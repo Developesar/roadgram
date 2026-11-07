@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="150" viewBox="0 0 1000 150" font-family="Segoe UI, Tahoma, Arial, sans-serif">
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#37aee2"/></marker>
+  </defs>
+  <g fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2">
+    <rect x="10" y="30" width="260" height="90" rx="14"/>
+    <rect x="370" y="30" width="260" height="90" rx="14"/>
+    <rect x="730" y="30" width="260" height="90" rx="14" fill="#e0f2fe" stroke="#37aee2"/>
+  </g>
+  <g fill="#0f172a" text-anchor="middle">
+    <text x="140" y="68" font-size="20" font-weight="700">ROADMAP.md</text>
+    <text x="140" y="96" font-size="15" fill="#475569">- [x] done  - [ ] todo</text>
+    <text x="500" y="68" font-size="20" font-weight="700">tgpm sync</text>
+    <text x="500" y="96" font-size="15" fill="#475569">one command</text>
+    <text x="860" y="68" font-size="20" font-weight="700">Telegram group</text>
+    <text x="860" y="96" font-size="15" fill="#475569">edited + pinned messages</text>
+  </g>
+  <g stroke="#37aee2" stroke-width="3" marker-end="url(#a)">
+    <line x1="274" y1="75" x2="364" y2="75"/>
+    <line x1="634" y1="75" x2="724" y2="75"/>
+  </g>
+</svg>

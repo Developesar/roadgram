@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#1e3a8a"/>
+    </linearGradient>
+    <linearGradient id="tg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#37aee2"/>
+      <stop offset="1" stop-color="#1e96c8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="320" rx="24" fill="url(#bg)"/>
+  <circle cx="1080" cy="40" r="170" fill="#37aee2" opacity="0.10"/>
+  <circle cx="1140" cy="300" r="120" fill="#37aee2" opacity="0.08"/>
+
+  <!-- logo -->
+  <circle cx="160" cy="160" r="82" fill="url(#tg)"/>
+  <path d="M120 160 L206 124 L190 200 L162 180 L146 196 L146 172 Z" fill="#fff"/>
+  <path d="M146 172 L190 140" stroke="#37aee2" stroke-width="3" fill="none"/>
+
+  <!-- text -->
+  <text x="290" y="148" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="84" font-weight="800" fill="#ffffff">tgpm</text>
+  <text x="292" y="196" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="30" fill="#bfe3f5">Telegram Project Manager</text>
+  <text x="292" y="240" font-family="Segoe UI, Tahoma, Arial, sans-serif" font-size="24" fill="#93c5fd">Roadmap  ·  Weekly plan  ·  Announcements — all in one Telegram group</text>
+  <text x="292" y="276" font-family="Segoe UI, Tahoma, Arial, sans-serif" font-size="22" fill="#93c5fd">رودمپ · پلن هفتگی · اطلاعیه‌ها، همه در یک گروه تلگرام</text>
+</svg>
