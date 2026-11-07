@@ -46,6 +46,136 @@
 | 🤖 | **سازگار با ابزارهای هوش مصنوعی** | `tgpm agent install` کار با Claude Code، Codex، Cline، Cursor و Gemini CLI را یادشان می‌دهد. |
 | 📦 | **بدون وابستگی** | فقط کتابخانه‌ی استاندارد پایتون، و یک فایل اجرایی تک‌فایلی `tgpm.exe` برای ویندوز. |
 
+## 📥 نصب از صفر
+
+tgpm به **پایتون ۳٫۱۰ یا بالاتر** و **git** نیاز دارد و وابستگی دیگری ندارد. برای ربات هم یک حساب تلگرام لازم است (بخش [شروع سریع](#-شروع-سریع)).
+
+### ویندوز
+
+</div>
+
+```powershell
+# ۱. نصب پایتون و git (آنچه دارید را رد کنید)
+winget install Python.Python.3.12
+winget install Git.Git
+# PowerShell را ببندید و دوباره باز کنید، بعد بررسی کنید:
+python --version
+
+# ۲. نصب tgpm
+python -m pip install git+https://github.com/alipyth/roadgram.git
+
+# ۳. بررسی کارکرد
+tgpm --version
+```
+
+<div dir="rtl">
+
+اگر `tgpm` شناخته نشد، به‌جایش `python -m tgpm --version` را بزنید، یا پوشه‌ی `Scripts` پایتون را به `PATH` اضافه کنید.
+
+### مک (macOS)
+
+</div>
+
+```bash
+# ۱. نصب پایتون و git (با Homebrew: https://brew.sh)
+brew install python git
+python3 --version
+
+# ۲. نصب tgpm (pipx آن را جدا نگه می‌دارد و دستور tgpm را در PATH می‌گذارد)
+brew install pipx && pipx ensurepath
+pipx install git+https://github.com/alipyth/roadgram.git
+
+# ۳. بررسی کارکرد (اول یک ترمینال تازه باز کنید)
+tgpm --version
+```
+
+<div dir="rtl">
+
+### لینوکس (دبیان / اوبونتو؛ توزیع‌های دیگر مدیر بسته‌ی خودشان را دارند)
+
+</div>
+
+```bash
+# ۱. نصب پایتون، pip و git
+sudo apt update
+sudo apt install -y python3 python3-pip pipx git
+python3 --version        # باید ۳٫۱۰ یا بالاتر باشد
+
+# ۲. نصب tgpm
+pipx ensurepath
+pipx install git+https://github.com/alipyth/roadgram.git
+
+# ۳. بررسی کارکرد (اول یک ترمینال تازه باز کنید)
+tgpm --version
+```
+
+<div dir="rtl">
+
+در فدورا: `sudo dnf install python3 pipx git` و در آرچ: `sudo pacman -S python python-pipx git`.
+
+### از روی clone (هر سیستم‌عامل، برای توسعه)
+
+</div>
+
+```bash
+git clone https://github.com/alipyth/roadgram.git
+cd roadgram
+python -m pip install .            # یا: python -m pip install -e .   (حالت ویرایشی)
+python -m unittest discover -s tests -t .      # اختیاری: اجرای تست‌ها
+```
+
+<div dir="rtl">
+
+بدون نصب هم می‌توانید مستقیم از داخل clone اجرا کنید: `python -m tgpm --version`.
+
+### به‌روزرسانی و حذف
+
+</div>
+
+```bash
+pipx upgrade tgpm          # یا: python -m pip install --upgrade git+https://github.com/alipyth/roadgram.git
+pipx uninstall tgpm        # یا: python -m pip uninstall tgpm
+```
+
+<div dir="rtl">
+
+### ویندوز: یک فایل `tgpm.exe` (بدون پایتون روی سیستم مقصد)
+
+روی یک سیستم که پایتون دارد یک بار بسازید و `dist\tgpm.exe` را هرجا خواستید کپی کنید:
+
+</div>
+
+```powershell
+git clone https://github.com/alipyth/roadgram.git
+cd roadgram
+powershell -File build_exe.ps1     # تست‌ها را اجرا می‌کند، PyInstaller را نصب می‌کند و dist\tgpm.exe را می‌سازد
+.\dist\tgpm.exe --version
+```
+
+<div dir="rtl">
+
+## 🧭 اولین اجرا، قدم‌به‌قدم
+
+۱. [آماده‌سازی تلگرام](#۱-آماده‌سازی-تلگرام-یک-بار-حدود-۵-دقیقه) را انجام دهید و **توکن ربات** و **شناسه‌ی گروه** را کنار دستتان داشته باشید.
+۲. ترمینال را **داخل پوشه‌ی پروژه** (همان مخزنی که می‌خواهید دنبال کنید) باز کنید.
+۳. `tgpm init --name "My App"` فایل‌های `tgpm.json`، `.env` و `ROADMAP.md` را می‌سازد و `.gitignore` را به‌روز می‌کند.
+۴. `.env` را باز کنید و مقدارها را بگذارید (مثال زیر):
+۵. `ROADMAP.md` را با هفته‌ها و کارهای واقعی خودتان ویرایش کنید.
+۶. `tgpm check` باید بگوید توکن، گروه و دسترسی‌ها درست‌اند.
+۷. `tgpm week 1 --dry-run` پیام را بدون ارسال نشان می‌دهد.
+۸. `tgpm week 1` و `tgpm plan 2` پیام‌های واقعی را پست و پین می‌کنند.
+۹. از این به بعد: در `ROADMAP.md` تیک بزنید و `tgpm sync` را اجرا کنید.
+
+</div>
+
+```ini
+# .env
+TELEGRAM_BOT_TOKEN=123456:ABC-your-token
+TELEGRAM_CHAT_ID=-1001234567890
+```
+
+<div dir="rtl">
+
 ## 👀 خروجی چه شکلی است؟
 
 نتیجه‌ی `tgpm week 1` (پیامی که در تاپیک تلگرام می‌بینید):

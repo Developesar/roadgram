@@ -40,6 +40,106 @@ You write the roadmap as a normal Markdown checklist in your repository. After e
 | 🤖 | **AI agent ready** | `tgpm agent install` teaches Claude Code, Codex, Cline, Cursor and Gemini CLI to use it. |
 | 📦 | **Zero dependencies** | Standard library only, plus a single-file `tgpm.exe` for Windows. |
 
+## 📥 Install from scratch
+
+tgpm needs **Python 3.10 or newer** and **git**. It has no other dependencies. A Telegram account is needed for the bot (see [Quick start](#-quick-start)).
+
+### Windows
+
+```powershell
+# 1. Install Python and git (skip what you already have)
+winget install Python.Python.3.12
+winget install Git.Git
+# close and reopen PowerShell, then check:
+python --version
+
+# 2. Install tgpm
+python -m pip install git+https://github.com/alipyth/roadgram.git
+
+# 3. Check it works
+tgpm --version
+```
+
+If `tgpm` is "not recognized", use `python -m tgpm --version` instead, or add Python's `Scripts` folder to `PATH`.
+
+### macOS
+
+```bash
+# 1. Install Python and git (with Homebrew: https://brew.sh)
+brew install python git
+python3 --version
+
+# 2. Install tgpm (pipx keeps it isolated and puts `tgpm` on your PATH)
+brew install pipx && pipx ensurepath
+pipx install git+https://github.com/alipyth/roadgram.git
+
+# 3. Check it works (open a new terminal first)
+tgpm --version
+```
+
+### Linux (Debian / Ubuntu; other distros use their own package manager)
+
+```bash
+# 1. Install Python, pip and git
+sudo apt update
+sudo apt install -y python3 python3-pip pipx git
+python3 --version        # must be 3.10 or newer
+
+# 2. Install tgpm
+pipx ensurepath
+pipx install git+https://github.com/alipyth/roadgram.git
+
+# 3. Check it works (open a new terminal first)
+tgpm --version
+```
+
+On Fedora use `sudo dnf install python3 pipx git`, on Arch `sudo pacman -S python python-pipx git`.
+
+### From a clone (any OS, for development)
+
+```bash
+git clone https://github.com/alipyth/roadgram.git
+cd roadgram
+python -m pip install .            # or: python -m pip install -e .   (editable)
+python -m unittest discover -s tests -t .      # optional: run the tests
+```
+
+You can also skip installing and run it straight from the clone: `python -m tgpm --version`.
+
+### Update and uninstall
+
+```bash
+pipx upgrade tgpm          # or: python -m pip install --upgrade git+https://github.com/alipyth/roadgram.git
+pipx uninstall tgpm        # or: python -m pip uninstall tgpm
+```
+
+### Windows: a single `tgpm.exe` (no Python on the target PC)
+
+On a PC that has Python, build it once and copy `dist\tgpm.exe` anywhere:
+
+```powershell
+git clone https://github.com/alipyth/roadgram.git
+cd roadgram
+powershell -File build_exe.ps1     # runs the tests, installs PyInstaller, builds dist\tgpm.exe
+.\dist\tgpm.exe --version
+```
+
+## 🧭 Your first run, step by step
+
+1. Do the [Telegram setup](#1-set-up-telegram-once-5-minutes) and keep the **bot token** and **group id** at hand.
+2. Open a terminal **in your project folder** (the repo you want to track).
+3. `tgpm init --name "My App"` creates `tgpm.json`, `.env`, `ROADMAP.md` and updates `.gitignore`.
+4. Open `.env` and paste your values:
+   ```ini
+   TELEGRAM_BOT_TOKEN=123456:ABC-your-token
+   TELEGRAM_CHAT_ID=-1001234567890
+   ```
+5. Edit `ROADMAP.md` to your real weeks and tasks.
+6. `tgpm check` must report that the token, group and rights are fine.
+7. `tgpm week 1 --dry-run` shows the message without sending it.
+8. `tgpm week 1` and `tgpm plan 2` post and pin the real messages.
+9. From now on: tick tasks in `ROADMAP.md`, then run `tgpm sync`.
+
 ## 👀 What it looks like
 
 Output of `tgpm week 1` (a message in your Telegram topic):
